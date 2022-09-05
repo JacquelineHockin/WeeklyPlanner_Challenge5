@@ -6,7 +6,32 @@
       </div> */
 }
 
+const currentDay = moment().format("LLLL");
+const clock = moment().format("LTS");
+
+function updateClock() {
+  var now = new Date();
+  setTimeout(updateClock, 1000);
+}
+// const now = new Date(hst);
+// var t = $Timeout(hstClock, 300);
+
+// function checkHstTime(i) {
+//   if (i < 10) {
+//     i = "0" + i;
+//   } // add zero in front of numbers < 10
+//   return i;
+// }
+
+const container = $(".container");
+
+$("#currentDay").text(currentDay);
+
 $(document).ready(function () {
+  //current time w/ moment.js
+  //   const moment = require("moment");
+  //   let now = moment();
+  //   console.log(now.format());
   //<> creates a new element
   for (var i = 9; i < 12; i++) {
     //entire row
@@ -19,6 +44,8 @@ $(document).ready(function () {
       .text(i + " AM");
     //middle text area
     var textDiv = $("<textarea>").addClass("col-8 description");
+    //past
+    // var past = $("<div>").addClass("hr-past");
     //right column (save buttons)
     var saveBtn = $("<button>")
       .addClass("col-2 saveBtn")
@@ -88,6 +115,15 @@ $(document).ready(function () {
   }
 });
 
-// $("row-9").html("9 AM");
-
-// document.getElementById("row-9").innerHtml = "9AM";
+var cal = new Date(); // init date and time
+var currentHour = cal.getHours(); // returns 0-23 on a 24 hour clock
+console.log(currentHour);
+for (var i = 9; i < 18; i++) {
+  if (i < currentHour) {
+    document.getElementById("row-" + i).addClass("present");
+  } else if (i === currentHour) {
+    document.getElementById("row-" + i).addClass("present");
+  } else if (i > currentHour) {
+    document.getElementById("row-" + i).addClass("future");
+  }
+}
