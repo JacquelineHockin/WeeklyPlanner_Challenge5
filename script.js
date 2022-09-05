@@ -7,18 +7,23 @@
 }
 
 $(document).ready(function () {
+  //<> creates a new element
   for (var i = 9; i < 12; i++) {
-    //<> creates a new element
+    //entire row
     var rowDiv = $("<div>")
       .addClass("row time-block")
       .attr("id", "row-" + i);
+    //left column w/ hr
     var hourDiv = $("<div>")
       .addClass("col-2 hour")
       .text(i + " AM");
+    //middle text area
     var textDiv = $("<textarea>").addClass("col-8 description");
+    //right column (save buttons)
     var saveBtn = $("<button>")
       .addClass("col-2 saveBtn")
       .attr("id", "btn-" + i)
+      //taking whatever is written in the middle txt area & saving to local storage
       .click(function () {
         var num = $(this).attr("id");
         var hourTxtBox = $(this).siblings("textarea").val();
